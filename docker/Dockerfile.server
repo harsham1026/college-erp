@@ -1,0 +1,19 @@
+FROM node:20-alpine AS base
+RUN corepack enable && corepack prepare pnpm@9.15.4 --activate
+
+WORKDIR /app
+
+COPY package.json pnpm-workspace.yaml turbo.json pnpm-lock.yaml* ./
+COPY apps/server/package.json ./apps/server/
+COPY packages/shared/package.json ./packages/shared/
+
+RUN pnpm install --frozen-lockfile || pnpm install
+
+COPY packages/shared ./packages/shared
+COPY apps/server ./apps/server
+
+RUN cd apps/server && npx prisma generate
+
+EXPOSE 5000
+
+CMD ["pnpm", "--filter", "server", "dev"]

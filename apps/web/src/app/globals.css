@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  }
+
+  * {
+    @apply border-slate-200;
+  }
+
+  body {
+    @apply bg-white text-slate-900 antialiased;
+    font-family: var(--font-sans);
+  }
+
+  .dark body {
+    @apply bg-slate-950 text-slate-100;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: #334155;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(99, 102, 241, 0.2);
+    color: #312e81;
+  }
+}
+
+@layer components {
+  .glass {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass {
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Focus ring */
+  input:focus,
+  select:focus,
+  textarea:focus {
+    @apply ring-2 ring-indigo-500/20 outline-none;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
