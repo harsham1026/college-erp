@@ -41,10 +41,10 @@ studentRouter.post('/', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL), asy
   const student = await prisma.student.create({
     data: {
       enrollmentNo,
-      courseId,
-      branchId,
-      sectionId,
-      semesterId,
+      course: { connect: { id: courseId } },
+      semester: { connect: { id: semesterId } },
+      ...(branchId && { branch: { connect: { id: branchId } } }),
+      ...(sectionId && { section: { connect: { id: sectionId } } }),
       batchYear,
       admissionDate: new Date(admissionDate),
       user: {
@@ -61,12 +61,6 @@ studentRouter.post('/', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL), asy
         },
       },
     },
-    include: {
-      user: { select: { id: true, firstName: true, lastName: true, email: true } },
-      course: true,
-      branch: true,
-      semester: true,
-    },
   });
 
   res.status(201).json({ success: true, message: 'Student created', data: student });
@@ -74,7 +68,7 @@ studentRouter.post('/', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL), asy
 
 studentRouter.put('/:id', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL, UserRole.HOD), asyncHandler(async (req: Request, res: Response) => {
   const student = await prisma.student.update({
-    where: { id: req.params.id },
+    where: { id: req.params.id as string },
     data: req.body,
     include: {
       user: { select: { id: true, firstName: true, lastName: true, email: true } },
@@ -85,7 +79,7 @@ studentRouter.put('/:id', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL, Us
 }));
 
 studentRouter.delete('/:id', authorize(UserRole.SUPER_ADMIN), asyncHandler(async (req: Request, res: Response) => {
-  await prisma.student.delete({ where: { id: req.params.id } });
+  await prisma.student.delete({ where: { id: req.params.id as string } });
   res.json({ success: true, message: 'Student deleted' });
 }));
 
@@ -148,7 +142,7 @@ teacherRouter.post('/', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL), asy
 
 teacherRouter.put('/:id', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL, UserRole.HOD), asyncHandler(async (req: Request, res: Response) => {
   const teacher = await prisma.teacher.update({
-    where: { id: req.params.id },
+    where: { id: req.params.id as string },
     data: req.body,
     include: {
       user: { select: { id: true, firstName: true, lastName: true, email: true } },
@@ -159,7 +153,7 @@ teacherRouter.put('/:id', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL, Us
 }));
 
 teacherRouter.delete('/:id', authorize(UserRole.SUPER_ADMIN), asyncHandler(async (req: Request, res: Response) => {
-  await prisma.teacher.delete({ where: { id: req.params.id } });
+  await prisma.teacher.delete({ where: { id: req.params.id as string } });
   res.json({ success: true, message: 'Teacher deleted' });
 }));
 

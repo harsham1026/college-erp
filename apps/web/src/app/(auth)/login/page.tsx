@@ -142,7 +142,7 @@ export default function LoginPage() {
                   placeholder="Enter your email"
                   required
                   className="w-full pl-12 pr-4 py-3.5 rounded-xl border text-slate-900 placeholder-slate-400 transition-all duration-200 text-sm focus:outline-none focus:ring-2"
-                  style={{ background: 'white', borderColor: '#e2e8f0', focusRingColor: '#6366f1' }}
+                  style={{ background: 'white', borderColor: '#e2e8f0' }}
                 />
               </div>
             </div>

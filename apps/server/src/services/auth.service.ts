@@ -437,10 +437,10 @@ export class AuthService {
   // ============================================
   private generateTokens(payload: JwtPayload) {
     const accessToken = jwt.sign(payload, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN as string,
+      expiresIn: JWT_EXPIRES_IN as any,
     });
     const refreshToken = jwt.sign(payload, JWT_REFRESH_SECRET, {
-      expiresIn: JWT_REFRESH_EXPIRES_IN as string,
+      expiresIn: JWT_REFRESH_EXPIRES_IN as any,
     });
     return { accessToken, refreshToken };
   }

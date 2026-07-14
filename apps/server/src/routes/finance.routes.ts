@@ -106,7 +106,7 @@ paymentRouter.get('/', asyncHandler(async (req: Request, res: Response) => {
 // Get payment by ID
 paymentRouter.get('/:id', asyncHandler(async (req: Request, res: Response) => {
   const payment = await prisma.payment.findUnique({
-    where: { id: req.params.id },
+    where: { id: req.params.id as string },
     include: {
       student: { include: { user: true } },
       fee: { include: { course: true, semester: true } },
@@ -120,7 +120,7 @@ paymentRouter.get('/student/:studentId/summary', asyncHandler(async (req: Reques
   const { studentId } = req.params;
 
   const student = await prisma.student.findUnique({
-    where: { id: studentId },
+    where: { id: studentId as string },
     include: { course: true, semester: true },
   });
 
@@ -132,12 +132,12 @@ paymentRouter.get('/student/:studentId/summary', asyncHandler(async (req: Reques
   const fees = await prisma.fee.findMany({
     where: { courseId: student.courseId },
     include: {
-      payments: { where: { studentId } },
+      payments: { where: { studentId: studentId as string } },
     },
   });
 
-  const summary = fees.map((fee) => {
-    const totalPaid = fee.payments.reduce((sum, p) => sum + p.amount, 0);
+  const summary = fees.map((fee: any) => {
+    const totalPaid = fee.payments.reduce((sum: number, p: any) => sum + p.amount, 0);
     return {
       feeId: fee.id,
       feeName: fee.name,

@@ -44,3 +44,12 @@ docker/data/
 # Logs
 *.log
 apps/server/logs/
+
+# TS Build info
+*.tsbuildinfo
+
+# Seed build outputs
+apps/server/prisma/seed.js
+apps/server/prisma/seed.js.map
+apps/server/prisma/seed.d.ts
+apps/server/prisma/seed.d.ts.map

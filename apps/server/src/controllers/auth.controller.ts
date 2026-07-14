@@ -114,6 +114,6 @@ export const getSessions = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const revokeSession = asyncHandler(async (req: Request, res: Response) => {
-  await authService.revokeSession(req.user!.id, req.params.sessionId);
+  await authService.revokeSession(req.user!.id, req.params.sessionId as string);
   res.json({ success: true, message: 'Session revoked' });
 });
