@@ -119,11 +119,13 @@ teacherRouter.post('/', authorize(UserRole.SUPER_ADMIN, UserRole.PRINCIPAL), asy
   const teacher = await prisma.teacher.create({
     data: {
       employeeId,
-      departmentId,
       designation,
       qualification,
       specialization,
       joiningDate: new Date(joiningDate),
+      department: {
+        connect: { id: departmentId },
+      },
       user: {
         create: {
           firstName,

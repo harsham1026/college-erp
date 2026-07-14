@@ -40,3 +40,7 @@ pnpm-debug.log*
 
 # Docker
 docker/data/
+
+# Logs
+*.log
+apps/server/logs/
