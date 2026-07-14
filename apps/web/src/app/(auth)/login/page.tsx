@@ -76,7 +76,7 @@ export default function LoginPage() {
                 <path d="M6 12v5c3 3 9 3 12 0v-5" />
               </svg>
             </div>
-            <span className="text-2xl font-bold tracking-tight">College ERP</span>
+            <span className="text-2xl font-bold tracking-tight">CollegePES</span>
           </div>
           <h1 className="text-5xl font-bold leading-tight mb-6" style={{ letterSpacing: '-0.025em' }}>
             Smart Campus<br />
@@ -110,7 +110,7 @@ export default function LoginPage() {
                 <path d="M6 12v5c3 3 9 3 12 0v-5" />
               </svg>
             </div>
-            <span className="text-xl font-bold text-slate-900">College ERP</span>
+            <span className="text-xl font-bold text-slate-900">CollegePES</span>
           </div>
 
           <h2 className="text-3xl font-bold text-slate-900 mb-2" style={{ letterSpacing: '-0.025em' }}>Welcome back</h2>

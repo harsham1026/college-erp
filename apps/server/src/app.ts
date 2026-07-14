@@ -40,7 +40,7 @@ app.use(rateLimiter);
 app.get('/api/health', (_req, res) => {
   res.json({
     success: true,
-    message: 'College ERP API is running',
+    message: 'CollegePES API is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
   });

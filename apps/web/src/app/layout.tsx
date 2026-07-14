@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "College ERP | AI-Powered Smart Campus Management",
+  title: "CollegePES | AI-Powered Smart Campus Management",
   description: "Enterprise resource planning for modern educational institutions. Manage academics, finance, placements, and more.",
   keywords: ["college", "erp", "education", "management", "ai"],
 };

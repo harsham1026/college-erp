@@ -275,7 +275,7 @@ export function Sidebar() {
                 <GraduationCap className="w-4.5 h-4.5 text-white" />
               </div>
               <div>
-                <h1 className="text-sm font-bold text-slate-900 dark:text-white">College ERP</h1>
+                <h1 className="text-sm font-bold text-slate-900 dark:text-white">CollegePES</h1>
                 <p className="text-[10px] text-slate-500">Enterprise Platform</p>
               </div>
             </div>
