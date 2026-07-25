@@ -4,17 +4,21 @@ import React from 'react';
 import { Bell, Search, Sun, Moon, User } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
+import { useTheme } from 'next-themes';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function TopNavbar() {
   const { user } = useAuth();
-  const [isDark, setIsDark] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [showNotifications, setShowNotifications] = React.useState(false);
   const [showProfile, setShowProfile] = React.useState(false);
 
-  const toggleDark = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <header className="sticky top-0 z-30 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
@@ -35,10 +39,29 @@ export function TopNavbar() {
         <div className="flex items-center gap-2">
           {/* Theme Toggle */}
           <button
-            onClick={toggleDark}
-            className="p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors"
+            onClick={() => setTheme(isDark ? 'light' : 'dark')}
+            className="p-2.5 h-10 w-10 flex items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors relative overflow-hidden"
+            aria-label="Toggle theme"
           >
-            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            {mounted ? (
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={isDark ? 'dark' : 'light'}
+                  initial={{ y: -15, opacity: 0, rotate: -45 }}
+                  animate={{ y: 0, opacity: 1, rotate: 0 }}
+                  exit={{ y: 15, opacity: 0, rotate: 45 }}
+                  transition={{ duration: 0.15, ease: 'easeInOut' }}
+                >
+                  {isDark ? (
+                    <Sun className="w-5 h-5 text-amber-500 fill-amber-500/10" />
+                  ) : (
+                    <Moon className="w-5 h-5 text-indigo-500 fill-indigo-500/10" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+              <div className="w-5 h-5" /> // Prevent layout shifts during hydration
+            )}
           </button>
 
           {/* Notifications */}
