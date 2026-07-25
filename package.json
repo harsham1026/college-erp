@@ -22,9 +22,11 @@
     "install:all": "npm install && cd apps/server && npm install && cd ../web && npm install"
   },
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "concurrently": "^9.1.0",
+    "turbo": "^2.10.6"
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "packageManager": "npm@11.13.0"
 }
