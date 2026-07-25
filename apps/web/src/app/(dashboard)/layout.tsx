@@ -3,8 +3,9 @@
 import React from 'react';
 import { Sidebar } from '@/components/layouts/Sidebar';
 import { TopNavbar } from '@/components/layouts/TopNavbar';
-import { AuthProvider, useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
+import LoadingScreen from '@/components/LoadingScreen';
 
 function ProtectedContent({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -17,14 +18,7 @@ function ProtectedContent({ children }: { children: React.ReactNode }) {
   }, [isAuthenticated, isLoading, router]);
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 rounded-full border-4 border-indigo-600 border-t-transparent animate-spin" />
-          <p className="text-sm text-slate-500">Loading...</p>
-        </div>
-      </div>
-    );
+    return <LoadingScreen onComplete={() => {}} />;
   }
 
   if (!isAuthenticated) return null;
@@ -43,9 +37,5 @@ function ProtectedContent({ children }: { children: React.ReactNode }) {
 }
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <AuthProvider>
-      <ProtectedContent>{children}</ProtectedContent>
-    </AuthProvider>
-  );
+  return <ProtectedContent>{children}</ProtectedContent>;
 }
