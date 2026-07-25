@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, Check, AlertCircle, ArrowRight, ShieldAlert } from 'lucide-react';
+import LoadingScreen from '@/components/LoadingScreen';
 
 const ROLE_ROUTES: Record<string, string> = {
   SUPER_ADMIN: '/admin',
@@ -41,6 +42,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
+  const [targetRoute, setTargetRoute] = useState('');
   const { login } = useAuth();
   const router = useRouter();
 
@@ -102,10 +105,10 @@ export default function LoginPage() {
         return;
       }
       const role = result.user?.role || 'STUDENT';
-      router.push(ROLE_ROUTES[role] || '/student');
+      setTargetRoute(ROLE_ROUTES[role] || '/student');
+      setShowLoadingScreen(true);
     } catch (err: any) {
       setError(err.message || 'Invalid credentials');
-    } finally {
       setIsLoading(false);
     }
   };
@@ -117,6 +120,11 @@ export default function LoginPage() {
       className="min-h-screen w-full flex items-center justify-center bg-[#07090e] overflow-hidden text-slate-100 relative p-4"
       style={{ fontFamily: "'Inter', sans-serif" }}
     >
+      <AnimatePresence>
+        {showLoadingScreen && (
+          <LoadingScreen onComplete={() => router.push(targetRoute)} />
+        )}
+      </AnimatePresence>
       
       {/* 1. Full-screen Spotlight Layer */}
       <div 
