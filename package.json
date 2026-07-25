@@ -19,7 +19,7 @@
     "db:migrate": "npm run wsl:sync && cd apps/server && npx prisma migrate dev",
     "db:seed": "npm run wsl:sync && cd apps/server && npx prisma db seed",
     "db:studio": "npm run wsl:sync && cd apps/server && npx prisma studio",
-    "install:all": "npm install && cd apps/server && npm install && cd ../web && npm install"
+    "install:all": "npm install"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
