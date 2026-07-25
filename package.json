@@ -8,16 +8,17 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:server": "cd apps/server && npm run dev",
+    "wsl:sync": "node scripts/update-wsl-ip.js",
+    "dev:server": "npm run wsl:sync && cd apps/server && npm run dev",
     "dev:web": "cd apps/web && npm run dev",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
     "build": "npm run build --workspace=@college-erp/shared && cd apps/web && npm run build",
     "build:server": "npm run build --workspace=@college-erp/shared && cd apps/server && npm run build",
-    "db:generate": "cd apps/server && npx prisma generate",
-    "db:push": "cd apps/server && npx prisma db push",
-    "db:migrate": "cd apps/server && npx prisma migrate dev",
-    "db:seed": "cd apps/server && npx prisma db seed",
-    "db:studio": "cd apps/server && npx prisma studio",
+    "db:generate": "npm run wsl:sync && cd apps/server && npx prisma generate",
+    "db:push": "npm run wsl:sync && cd apps/server && npx prisma db push",
+    "db:migrate": "npm run wsl:sync && cd apps/server && npx prisma migrate dev",
+    "db:seed": "npm run wsl:sync && cd apps/server && npx prisma db seed",
+    "db:studio": "npm run wsl:sync && cd apps/server && npx prisma studio",
     "install:all": "npm install && cd apps/server && npm install && cd ../web && npm install"
   },
   "devDependencies": {
