@@ -61,9 +61,73 @@ export const DEFAULT_TIMETABLES = [
 ];
 
 export const DEFAULT_TEACHERS = [
-  { id: '1', employeeId: 'TCH001', user: { firstName: 'Priya', lastName: 'Sharma', email: 'priya@erp.com' } },
-  { id: '2', employeeId: 'TCH002', user: { firstName: 'Arun', lastName: 'Patel', email: 'arun@erp.com' } },
-  { id: '3', employeeId: 'TCH003', user: { firstName: 'Sneha', lastName: 'Reddy', email: 'sneha@erp.com' } },
+  { id: '1', employeeId: 'TCH001', user: { firstName: 'Priya', lastName: 'Sharma', email: 'priya@erp.com', phone: '9876543291' }, departmentId: '1', designation: 'Associate Professor', qualification: 'Ph.D. CS', experience: '8 Years', isActive: true },
+  { id: '2', employeeId: 'TCH002', user: { firstName: 'Arun', lastName: 'Patel', email: 'arun@erp.com', phone: '9876543292' }, departmentId: '1', designation: 'Assistant Professor', qualification: 'M.Tech CS', experience: '5 Years', isActive: true },
+  { id: '3', employeeId: 'TCH003', user: { firstName: 'Sneha', lastName: 'Reddy', email: 'sneha@erp.com', phone: '9876543293' }, departmentId: '2', designation: 'Professor', qualification: 'Ph.D. Electronics', experience: '12 Years', isActive: true },
+];
+
+export const DEFAULT_STUDENTS = [
+  { id: '1', enrollmentNo: 'MIT2024001', user: { firstName: 'Rahul', lastName: 'Verma', email: 'rahul@student.erp.com', phone: '9876543210' }, courseId: '1', semesterId: '1', branchId: '1', sectionId: '1', batchYear: 2024, isActive: true },
+  { id: '2', enrollmentNo: 'MIT2024002', user: { firstName: 'Meera', lastName: 'Nair', email: 'meera@student.erp.com', phone: '9876543211' }, courseId: '1', semesterId: '1', branchId: '1', sectionId: '1', batchYear: 2024, isActive: true },
+  { id: '3', enrollmentNo: 'MIT2024003', user: { firstName: 'Arjun', lastName: 'Menon', email: 'arjun@student.erp.com', phone: '9876543212' }, courseId: '1', semesterId: '1', branchId: '1', sectionId: '2', batchYear: 2024, isActive: true },
+  { id: '4', enrollmentNo: 'MIT2024004', user: { firstName: 'Divya', lastName: 'Gupta', email: 'divya@student.erp.com', phone: '9876543213' }, courseId: '1', semesterId: '2', branchId: '2', sectionId: '3', batchYear: 2023, isActive: true },
+  { id: '5', enrollmentNo: 'MIT2024005', user: { firstName: 'Karan', lastName: 'Malhotra', email: 'karan@student.erp.com', phone: '9876543214' }, courseId: '3', semesterId: '1', branchId: '3', sectionId: '1', batchYear: 2024, isActive: true },
+];
+
+export const DEFAULT_PARENTS = [
+  { id: '1', parentName: 'Kishore Verma', relation: 'Father', studentId: '1', phone: '9876543211', email: 'kishore@parents.com', address: '45 Sector B, Bangalore', occupation: 'Software Engineer', isActive: true },
+  { id: '2', parentName: 'Suman Nair', relation: 'Mother', studentId: '2', phone: '9876543212', email: 'suman@parents.com', address: '12 Green Glen Layout, Bangalore', occupation: 'Doctor', isActive: true },
+];
+
+export const DEFAULT_ATTENDANCES: {
+  id: string;
+  studentId: string;
+  date: string;
+  status: 'PRESENT' | 'ABSENT';
+  subjectId: string;
+  sectionId: string;
+}[] = [
+  { id: '1', studentId: '1', date: '2026-07-27', status: 'PRESENT', subjectId: '1', sectionId: '1' },
+  { id: '2', studentId: '2', date: '2026-07-27', status: 'PRESENT', subjectId: '1', sectionId: '1' },
+  { id: '3', studentId: '3', date: '2026-07-27', status: 'ABSENT', subjectId: '1', sectionId: '1' },
+];
+
+export const DEFAULT_EXAMS = [
+  { id: '1', name: 'Internal Assessment I', subjectId: '1', invigilatorId: '1', date: '2026-08-10', time: '10:00 AM - 12:00 PM', room: 'Room 301', isPublished: true },
+  { id: '2', name: 'Final Semester Practical', subjectId: '2', invigilatorId: '2', date: '2026-08-12', time: '09:00 AM - 01:00 PM', room: 'Lab 1', isPublished: false },
+];
+
+export const DEFAULT_RESULTS = [
+  { id: '1', studentId: '1', examId: '1', subjectId: '1', marksObtained: 85, totalMarks: 100, sgpa: 8.5, cgpa: 8.5 },
+  { id: '2', studentId: '2', examId: '1', subjectId: '1', marksObtained: 92, totalMarks: 100, sgpa: 9.2, cgpa: 9.0 },
+  { id: '3', studentId: '3', examId: '1', subjectId: '1', marksObtained: 72, totalMarks: 100, sgpa: 7.2, cgpa: 7.4 },
+];
+
+export const DEFAULT_FEE_STRUCTURES = [
+  { id: '1', name: 'Tuition Fee 2026', courseId: '1', semesterNumber: 1, amount: 75000, description: 'Annual Tuition fee' },
+  { id: '2', name: 'Hostel Fee 2026', courseId: '1', semesterNumber: 1, amount: 35000, description: 'Room rent and dining charge' },
+];
+
+export const DEFAULT_FEE_COLLECTIONS = [
+  { id: '1', studentId: '1', feeStructureId: '1', amountPaid: 75000, balance: 0, paymentMethod: 'UPI', date: '2026-07-20', transactionId: 'TXN123456' },
+  { id: '2', studentId: '2', feeStructureId: '1', amountPaid: 50000, balance: 25000, paymentMethod: 'CARD', date: '2026-07-21', transactionId: 'TXN987654' },
+];
+
+export const DEFAULT_SCHOLARSHIPS = [
+  { id: '1', name: 'Merit Scholarship', amount: 25000, description: 'Awarded to students with CGPA >= 9.0' },
+  { id: '2', name: 'Financial Need Support', amount: 15000, description: 'Awarded to students with family income < 3LPA' },
+];
+
+export const DEFAULT_SCHOLARSHIP_APPLICATIONS: {
+  id: string;
+  studentId: string;
+  scholarshipId: string;
+  applyDate: string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  paymentStatus: 'PENDING' | 'DISBURSED';
+}[] = [
+  { id: '1', studentId: '2', scholarshipId: '1', applyDate: '2026-07-25', status: 'PENDING', paymentStatus: 'PENDING' },
+  { id: '2', studentId: '1', scholarshipId: '2', applyDate: '2026-07-22', status: 'APPROVED', paymentStatus: 'DISBURSED' },
 ];
 
 // Helper to check if window/localStorage is available
