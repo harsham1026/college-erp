@@ -4,24 +4,41 @@ import React from 'react';
 import { Sidebar } from '@/components/layouts/Sidebar';
 import { TopNavbar } from '@/components/layouts/TopNavbar';
 import { useAuth } from '@/hooks/useAuth';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import LoadingScreen from '@/components/LoadingScreen';
 
 function ProtectedContent({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   React.useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push('/login');
+    if (!isLoading) {
+      if (!isAuthenticated || !user) {
+        router.push('/');
+        return;
+      }
+
+      // Strict role-based route protection
+      const role = user.role;
+
+      if (pathname.startsWith('/admin') && !['SUPER_ADMIN', 'ADMIN', 'EXAM_CONTROLLER', 'ACCOUNTANT'].includes(role)) {
+        router.push('/');
+      } else if (pathname.startsWith('/teacher') && !['TEACHER', 'HOD'].includes(role)) {
+        router.push('/');
+      } else if (pathname.startsWith('/student') && !['STUDENT', 'PARENT'].includes(role)) {
+        router.push('/');
+      } else if (pathname.startsWith('/principal') && !['PRINCIPAL', 'VICE_PRINCIPAL'].includes(role)) {
+        router.push('/');
+      }
     }
-  }, [isAuthenticated, isLoading, router]);
+  }, [isAuthenticated, isLoading, user, pathname, router]);
 
   if (isLoading) {
     return <LoadingScreen onComplete={() => {}} />;
   }
 
-  if (!isAuthenticated) return null;
+  if (!isAuthenticated || !user) return null;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">

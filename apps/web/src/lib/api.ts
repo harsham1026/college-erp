@@ -81,7 +81,7 @@ class ApiClient {
       // Refresh failed, redirect to login
       if (typeof window !== 'undefined') {
         localStorage.removeItem('accessToken');
-        window.location.href = '/login';
+        window.location.href = '/';
       }
       throw new Error('Session expired');
     }
