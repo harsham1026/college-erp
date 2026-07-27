@@ -29,14 +29,14 @@ const adminNavItems: NavItem[] = [
   {
     title: 'Academic', href: '#', icon: School,
     children: [
-      { title: 'Colleges', href: '/admin/colleges', icon: Building2 },
-      { title: 'Departments', href: '/admin/departments', icon: Layers },
-      { title: 'Courses', href: '/admin/courses', icon: BookOpen },
-      { title: 'Branches', href: '/admin/branches', icon: GitBranch },
-      { title: 'Semesters', href: '/admin/semesters', icon: Clock },
-      { title: 'Sections', href: '/admin/sections', icon: CircleDot },
-      { title: 'Subjects', href: '/admin/subjects', icon: BookOpenCheck },
-      { title: 'Timetable', href: '/admin/timetable', icon: Calendar },
+      { title: 'Colleges', href: '/admin/academic/colleges', icon: Building2 },
+      { title: 'Departments', href: '/admin/academic/departments', icon: Layers },
+      { title: 'Courses', href: '/admin/academic/courses', icon: BookOpen },
+      { title: 'Branches', href: '/admin/academic/branches', icon: GitBranch },
+      { title: 'Semesters', href: '/admin/academic/semesters', icon: Clock },
+      { title: 'Sections', href: '/admin/academic/sections', icon: CircleDot },
+      { title: 'Subjects', href: '/admin/academic/subjects', icon: BookOpenCheck },
+      { title: 'Timetable', href: '/admin/academic/timetable', icon: Calendar },
     ],
   },
   {
@@ -176,11 +176,17 @@ const navItemsByRole: Record<string, NavItem[]> = {
 
 function NavItemComponent({ item, isCollapsed }: { item: NavItem; isCollapsed: boolean }) {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
-  const isActive = pathname === item.href;
   const hasChildren = item.children && item.children.length > 0;
+  const isChildActive = hasChildren && item.children!.some(child => pathname === child.href || pathname.startsWith(child.href + '/'));
+  const [isOpen, setIsOpen] = useState(false);
 
-  const isChildActive = hasChildren && item.children!.some(child => pathname === child.href);
+  React.useEffect(() => {
+    if (isChildActive) {
+      setIsOpen(true);
+    }
+  }, [isChildActive]);
+
+  const isActive = pathname === item.href;
 
   if (hasChildren) {
     return (
