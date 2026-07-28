@@ -268,13 +268,13 @@ export function Sidebar() {
       <aside
         className={cn(
           'fixed top-0 left-0 h-full z-50 flex flex-col transition-all duration-300 ease-in-out',
-          'bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800',
+          'bg-white dark:bg-[#111827] border-r border-slate-200 dark:border-[#334155]',
           isCollapsed ? 'w-[72px]' : 'w-[280px]',
           isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 h-16 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between px-4 h-16 border-b border-slate-200 dark:border-[#334155]">
           {!isCollapsed && (
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-indigo-500 to-violet-600">
@@ -302,7 +302,7 @@ export function Sidebar() {
         </nav>
 
         {/* User Section */}
-        <div className="border-t border-slate-200 dark:border-slate-800 p-3">
+        <div className="border-t border-slate-200 dark:border-[#334155] p-3">
           {!isCollapsed ? (
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white text-sm font-bold">

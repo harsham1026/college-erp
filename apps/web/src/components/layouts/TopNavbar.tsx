@@ -21,7 +21,7 @@ export function TopNavbar() {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+    <header className="sticky top-0 z-30 h-16 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-xl border-b border-slate-200 dark:border-[#334155]">
       <div className="flex items-center justify-between h-full px-6">
         {/* Search */}
         <div className="flex items-center gap-2 flex-1 max-w-md">

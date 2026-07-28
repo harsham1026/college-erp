@@ -1,13 +1,20 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-slate-950: #0b1120;
-  --color-slate-900: #1e293b;
-  --color-slate-800: #334155;
-  --color-slate-700: #475569;
-  --color-slate-200: #e2e8f0;
-  --color-slate-100: #f8fafc;
-  --color-slate-50: #f8fafc;
+  --color-app-bg-light: #ffffff;
+  --color-app-bg-dark: #0b1120;
+  --color-card-light: #ffffff;
+  --color-card-dark: #1e293b;
+  --color-sidebar-light: #ffffff;
+  --color-sidebar-dark: #111827;
+  --color-navbar-light: #ffffff;
+  --color-navbar-dark: #111827;
+  --color-border-light: #e2e8f0;
+  --color-border-dark: #334155;
+  --color-text-light: #0f172a;
+  --color-text-dark: #ffffff;
 }
 
 @layer base {
@@ -15,19 +22,33 @@
     --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
   }
 
-  * {
-    @apply border-slate-200;
+  *,
+  *::before,
+  *::after {
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out, border-color 250ms ease-in-out, fill 250ms ease-in-out, stroke 250ms ease-in-out;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
-    @apply bg-white text-[#0f172a] antialiased;
+    background-color: #ffffff;
+    color: #0f172a;
     font-family: var(--font-sans);
-    transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
   html.dark body,
   .dark body {
-    @apply bg-[#0b1120] text-white;
+    background-color: #0b1120;
+    color: #ffffff;
   }
 
   /* Scrollbar */
@@ -45,7 +66,8 @@
     border-radius: 999px;
   }
 
-  .dark ::-webkit-scrollbar-thumb {
+  .dark ::-webkit-scrollbar-thumb,
+  html.dark ::-webkit-scrollbar-thumb {
     background: #334155;
   }
 
@@ -55,28 +77,29 @@
 
   /* Selection */
   ::selection {
-    background: rgba(99, 102, 241, 0.2);
-    color: #312e81;
+    background: rgba(99, 102, 241, 0.25);
+    color: #4f46e5;
   }
 }
 
 @layer components {
   .glass {
     backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #e2e8f0;
   }
 
-  .dark .glass {
-    background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  .dark .glass,
+  html.dark .glass {
+    background: rgba(17, 24, 39, 0.85);
+    border: 1px solid #334155;
   }
 
-  /* Focus ring */
+  /* Input Focus Styles */
   input:focus,
   select:focus,
   textarea:focus {
-    @apply ring-2 ring-indigo-500/20 outline-none;
+    @apply ring-2 ring-indigo-500/30 outline-none;
   }
 }
 

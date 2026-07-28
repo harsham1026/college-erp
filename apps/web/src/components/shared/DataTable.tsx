@@ -77,9 +77,9 @@ export function DataTable<T extends { id: string }>({
   };
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden">
+    <div className="rounded-2xl bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-[#334155] overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+      <div className="px-6 py-4 border-b border-slate-200 dark:border-[#334155]">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-lg font-semibold text-slate-900 dark:text-white">{title}</h2>
@@ -234,7 +234,7 @@ export function DataTable<T extends { id: string }>({
       </div>
 
       {/* Pagination */}
-      <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="px-6 py-4 border-t border-slate-200 dark:border-[#334155] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-sm text-slate-500">
           <span>Show</span>
           <select

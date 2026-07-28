@@ -51,7 +51,7 @@ export default function TeacherDashboard() {
           { title: 'Pending HW', value: stats?.stats?.pendingHomework || 2, icon: FileText, gradient: 'from-amber-500 to-orange-600' },
           { title: 'Attendance Rate', value: '91%', icon: ClipboardList, gradient: 'from-emerald-500 to-teal-600' },
         ].map((stat) => (
-          <div key={stat.title} className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+          <div key={stat.title} className="rounded-2xl bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-[#334155] p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
             <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center mb-3`}>
               <stat.icon className="w-5 h-5 text-white" />
             </div>
@@ -62,8 +62,8 @@ export default function TeacherDashboard() {
       </div>
 
       {/* Today's Schedule */}
-      <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+      <div className="rounded-2xl bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-[#334155] overflow-hidden">
+        <div className="px-6 py-4 border-b border-slate-200 dark:border-[#334155] flex items-center justify-between">
           <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Today&apos;s Schedule</h3>
           <span className="text-xs text-indigo-600 font-medium bg-indigo-50 px-2.5 py-1 rounded-full">
             {new Date().toLocaleDateString('en-IN', { weekday: 'long' })}

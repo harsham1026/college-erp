@@ -63,7 +63,7 @@ export default function StudentDashboard() {
           { title: 'Pending HW', value: stats?.stats?.pendingHomeworkCount || 3, icon: FileText, color: '#f59e0b', bg: 'bg-amber-50' },
           { title: 'Assignments', value: stats?.stats?.pendingAssignmentCount || 2, icon: BookOpen, color: '#06b6d4', bg: 'bg-cyan-50' },
         ].map((stat) => (
-          <div key={stat.title} className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+          <div key={stat.title} className="rounded-2xl bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-[#334155] p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
             <div className="flex items-center justify-between mb-3">
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${stat.bg}`}>
                 <stat.icon className="w-5 h-5" style={{ color: stat.color }} />

@@ -59,7 +59,7 @@ interface StatCardProps {
 
 function StatCard({ title, value, change, trend, icon: Icon, color, gradient }: StatCardProps) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 hover:-translate-y-0.5 group">
+    <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-[#334155] p-6 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 hover:-translate-y-0.5 group">
       <div className="flex items-start justify-between">
         <div className="space-y-3">
           <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{title}</p>
@@ -91,8 +91,8 @@ function StatCard({ title, value, change, trend, icon: Icon, color, gradient }: 
 
 function ChartCard({ title, children, action }: { title: string; children: React.ReactNode; action?: React.ReactNode }) {
   return (
-    <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden">
-      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
+    <div className="rounded-2xl bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-[#334155] overflow-hidden">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-[#334155]">
         <h3 className="text-sm font-semibold text-slate-900 dark:text-white">{title}</h3>
         {action}
       </div>
