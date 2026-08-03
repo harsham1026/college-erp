@@ -22,13 +22,13 @@ function ProtectedContent({ children }: { children: React.ReactNode }) {
       // Strict role-based route protection
       const role = user.role;
 
-      if (pathname.startsWith('/admin') && !['SUPER_ADMIN', 'ADMIN', 'EXAM_CONTROLLER', 'ACCOUNTANT'].includes(role)) {
+      if (pathname.startsWith('/admin') && !['SUPER_ADMIN', 'ADMIN', 'EXAM_CONTROLLER', 'ACCOUNTANT', 'PRINCIPAL', 'VICE_PRINCIPAL', 'HOD'].includes(role)) {
         router.push('/');
-      } else if (pathname.startsWith('/teacher') && !['TEACHER', 'HOD'].includes(role)) {
+      } else if (pathname.startsWith('/teacher') && !['TEACHER', 'HOD', 'PRINCIPAL', 'VICE_PRINCIPAL', 'SUPER_ADMIN', 'ADMIN'].includes(role)) {
         router.push('/');
-      } else if (pathname.startsWith('/student') && !['STUDENT', 'PARENT'].includes(role)) {
+      } else if (pathname.startsWith('/student') && !['STUDENT', 'PARENT', 'PRINCIPAL', 'VICE_PRINCIPAL', 'SUPER_ADMIN', 'ADMIN'].includes(role)) {
         router.push('/');
-      } else if (pathname.startsWith('/principal') && !['PRINCIPAL', 'VICE_PRINCIPAL'].includes(role)) {
+      } else if (pathname.startsWith('/principal') && !['PRINCIPAL', 'VICE_PRINCIPAL', 'SUPER_ADMIN', 'ADMIN'].includes(role)) {
         router.push('/');
       }
     }

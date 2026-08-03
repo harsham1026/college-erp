@@ -113,10 +113,15 @@ const studentNavItems: NavItem[] = [
   { title: 'Achievements', href: '/student/achievements', icon: Award },
 ];
 
+const principalNavItems: NavItem[] = [
+  { title: 'Dashboard', href: '/principal', icon: LayoutDashboard },
+  ...adminNavItems.slice(1),
+];
+
 const navItemsByRole: Record<string, NavItem[]> = {
   SUPER_ADMIN: adminNavItems,
-  PRINCIPAL: adminNavItems,
-  VICE_PRINCIPAL: adminNavItems,
+  PRINCIPAL: principalNavItems,
+  VICE_PRINCIPAL: principalNavItems,
   HOD: adminNavItems,
   TEACHER: teacherNavItems,
   STUDENT: studentNavItems,
